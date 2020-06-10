@@ -22,10 +22,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
 
-        private final Path fileStorageLocation;
+
+    private final Path fileStorageLocation;
 
     @Autowired
     public FileStorageServiceImpl(FileStorageProperties fileStorageProperties) {
