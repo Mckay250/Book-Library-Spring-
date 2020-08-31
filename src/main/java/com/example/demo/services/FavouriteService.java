@@ -37,24 +37,24 @@ public class FavouriteService {
 
     public String addFavouriteBook(Book book, Integer favouriteId) {
         Favourite existingFavourite = repository.findById(favouriteId).orElse(null);
-        List<Book> existingBooks = existingFavourite.getBook();
+        List<Book> existingBooks = existingFavourite.getBooks();
         existingBooks.add(book);
-        existingFavourite.setBook(existingBooks);
+        existingFavourite.setBooks(existingBooks);
         repository.save(existingFavourite);
         return book + " has been added to Favourites";
     }
 
     public List<Book> getFavouriteBooksById(Integer id) {
-        List<Book> books =  repository.findById(id).orElse(null).getBook();
+        List<Book> books =  repository.findById(id).orElse(null).getBooks();
         return books;
     }
 
     public String removeBookFromFavourite(Book book, Favourite favourite) {
         Favourite existingFavourite = repository.findById(favourite.getId()).orElse(null);
         if (existingFavourite != null) {
-            List<Book> existingBooks = existingFavourite.getBook();
+            List<Book> existingBooks = existingFavourite.getBooks();
             existingBooks.remove(book);
-            existingFavourite.setBook(existingBooks);
+            existingFavourite.setBooks(existingBooks);
             repository.save(existingFavourite);
             return book + " has been removed from Favourites";
         }

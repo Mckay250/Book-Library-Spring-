@@ -15,7 +15,9 @@ public class Favourite implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "favourite")
     @JsonIgnore
     private User user;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="favourite_book", joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "favourite_id"))
     private List<Book> books;
 
     public Favourite() {
@@ -42,11 +44,11 @@ public class Favourite implements Serializable {
         this.user = user;
     }
 
-    public List<Book> getBook() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBook(List<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

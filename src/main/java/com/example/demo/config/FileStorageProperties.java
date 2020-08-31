@@ -6,17 +6,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 
-@ConfigurationProperties(prefix = AppConstants.FILE_PROPERTIES_PREFIX)
+@ConfigurationProperties("storage")
 public class FileStorageProperties {
 
-    private String uploadDir;
+    private String location = "uploadDir";
 
-    public String getUploadDir() {
-        return uploadDir;
+    public String getLocation() {
+        return location;
     }
 
-    public void setUploadDir(String uploadDir) {
-        this.uploadDir = uploadDir;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }

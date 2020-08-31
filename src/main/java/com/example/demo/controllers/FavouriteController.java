@@ -17,17 +17,17 @@ public class FavouriteController {
     }
 
 
-    @PostMapping("/api/user/addToFavourite/{favouriteId}")
-    public String addToFavourite(@RequestBody FavouriteRequestBody request) {
-        return favouriteService.addFavouriteBook(request.getBook(), request.getFavourite().getId());
+    @PostMapping("/api/open/favourite/{favouritesId}/addBook")
+    public String addToFavourite(@RequestBody Book book, @PathVariable Integer favouriteId) {
+        return favouriteService.addFavouriteBook(book, favouriteId);
     }
 
-    @PostMapping("/api/user/fav/{favId}")
-    public List<Book> getFavouriteBooks(@PathVariable Integer favId) {
-        return favouriteService.getFavouriteBooksById(favId);
+    @GetMapping("/api/open/user/fav/{favouritesId}")
+    public List<Book> getFavouriteBooks(@PathVariable Integer favouritesId) {
+        return favouriteService.getFavouriteBooksById(favouritesId);
     }
 
-    @DeleteMapping("/api/user/delete/")
+    @DeleteMapping("/api/open/user/delete/")
     public String deleteFavouriteByName(@RequestBody Book book, @RequestBody Favourite favourite) {
         return favouriteService.removeBookFromFavourite(book, favourite);
     }
